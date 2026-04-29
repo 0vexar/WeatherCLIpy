@@ -1,6 +1,8 @@
 import requests as r
+import os
+from dotenv import load_dotenv
 
-token = "e05a162b9fc1471e09cc6275bf34bb70"
+token = os.getenv("APPID")
 
 endpoints = {
     "search": "http://api.openweathermap.org/geo/1.0/direct",
@@ -23,3 +25,5 @@ def weather(lat: int,lon: int):
     }
 
     return r.get(endpoints["current"],params)
+
+print(token)
