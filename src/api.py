@@ -25,5 +25,3 @@ def weather(lat: int,lon: int):
     }
 
     return r.get(endpoints["current"],params)
-
-print(token)

@@ -1,0 +1,23 @@
+Screen {
+    layout: grid;
+    grid-size: 3;
+}
+
+ContentSwitcher {
+    column-span: 3;
+    row-span: 2;
+    width: 100%;
+    height: 100%;
+}
+
+#data {
+    content-align: center middle;
+    border: double red;
+    width: 100%;
+    height: 100%;
+}
+
+#input {
+    column-span: 3;
+    dock: bottom;
+}
