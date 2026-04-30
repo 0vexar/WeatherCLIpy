@@ -14,7 +14,7 @@ A command line weather app made with the Python Requests library and the [OpenWe
 ---
 
 ## 🚀 Features
-- [ ] 🛜 API Calls
+- [X] 🛜 API Calls
 - [ ] 🔢 Current Weather
 - [ ] ☁️ 5-Day Forecast
 - [ ] 🟰 Backend Logic
