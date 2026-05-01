@@ -1,5 +1,6 @@
 Screen {
     background: $surface;
+    align: center top;
 }
 
 ContentSwitcher {
@@ -18,7 +19,47 @@ ContentSwitcher {
     text-align: center;
 }
 
-#input {
-    column-span: 3;
+#city-input {
+    height: auto;
+    width: 100%;
     dock: bottom;
+}
+
+#metric-container {
+    height: auto;
+    width: 100%;
+    dock: top;
+    margin-top: 1;
+}
+
+#location-card {
+    width: 1fr;
+    height: auto;
+    border: round $secondary;
+    margin: 0 0;
+    content-align: center middle;
+    align-vertical: top;
+    /*align: center top;*/
+}
+
+.details {
+    
+}
+
+.metric {
+    width: 1fr;
+    height: auto;
+    border: round $primary;
+    margin: 0 1;
+    content-align: center middle;
+    align-vertical: top;
+    /*align: center top;*/
+}
+
+.hide {
+    display: none;
+}
+
+.start {
+    display: block;
 }
