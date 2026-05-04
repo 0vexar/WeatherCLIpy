@@ -21,14 +21,20 @@ def coords(location: str):
 
     return (response["lat"], response["lon"])
 
-def weather(lat: float,lon: float):
+def weather(coordinates:tuple):
     params = {
-        "lat": lat,
-        "lon": lon,
+        "lat": coordinates[0],
+        "lon": coordinates[1],
         "appid": token
     }
 
-    return r.get(endpoints["current"],params)
+    response = r.get(endpoints["current"],params).json()
+
+    weather_list = {
+        "temp": response["main"]["temp"]
+    }
+
+    return weather_list
 
 def get_location_details(coordinates: tuple):
     params = {
@@ -42,7 +48,14 @@ def get_location_details(coordinates: tuple):
     return_list = {
         "city": response[0]["local_names"]["en"],
         "country": iso3166.countries.get(response[0]["country"]).name,
-        "state": response[0]["state"]
     }
+
+    if response[0]["state"]:
+        return_list["state"] = response[0]["state"]
+
+    if response[0]["local_names"]:
+        return_list["city"] = response[0]["local_names"]["en"]
+    else:
+        return_list["city"] = response[0]["name"]
 
     return return_list

@@ -69,8 +69,10 @@ class WeatherCLI(App):
 
             location_info = get_location_details(coordinates)
 
+            current_weather = weather(coordinates)
+
             Cards["location"].rendercard(location_info["city"],location_info["country"],coordinates)
-            Cards["temp"].rendermetric("Temperature",f"Value","🔥")
+            Cards["temp"].rendermetric("Temperature",f"{current_weather['temp']}℉","🔥")
 
 
         event.input.clear()
