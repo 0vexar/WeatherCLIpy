@@ -1,2 +1,4 @@
 .env
-src/__pycache__/api.cpython-310.pyc
+src/__pycache__
+.vscode
+.venv

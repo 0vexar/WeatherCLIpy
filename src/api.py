@@ -25,13 +25,14 @@ def weather(coordinates:tuple):
     params = {
         "lat": coordinates[0],
         "lon": coordinates[1],
+        "units": "metric",
         "appid": token
     }
 
     response = r.get(endpoints["current"],params).json()
 
     weather_list = {
-        "temp": response["main"]["temp"]
+        "temp": ( round((response["main"]["temp"]*9/5) + 32) )
     }
 
     return weather_list

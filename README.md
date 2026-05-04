@@ -18,7 +18,7 @@ A command line weather app made with the Python Requests library and the [OpenWe
 - [ ] 🔢 Current Weather
 - [ ] ☁️ 5-Day Forecast
 - [ ] 🟰 Backend Logic
-- [ ] 💻 Textual TUI
+- [X] 💻 Textual TUI
 
 ---
 
