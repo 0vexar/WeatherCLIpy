@@ -4,7 +4,7 @@ import time
 
 from textual import events, on
 from textual.app import App, ComposeResult
-from textual.widgets import Static, Header, ContentSwitcher, Input
+from textual.widgets import Static, Header, Input, Digits
 from textual.containers import Vertical, Horizontal, Center
 
 class WeatherCard(Static):
@@ -35,6 +35,7 @@ class WeatherCLI(App):
 
         with Horizontal(id="metric-container",classes="hide"):
             yield LocationCard(id="location-card")
+            yield Digits("", id="local-clock")
             yield WeatherCard(id="temp",classes="metric")
 
         #with Horizontal(classes="hide"):
@@ -72,7 +73,7 @@ class WeatherCLI(App):
             current_weather = weather(coordinates)
 
             Cards["location"].rendercard(location_info["city"],location_info["country"],coordinates)
-            Cards["temp"].rendermetric("Temperature",f"{current_weather['temp']}℉","🔥")
+            Cards["temp"].rendermetric("Temperature",f"{current_weather['temp']}°F","🔥")
 
 
         event.input.clear()
