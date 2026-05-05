@@ -1,13 +1,11 @@
 Screen {
     background: $surface;
     align: center top;
+    overflow-y: hidden;
 }
 
-ContentSwitcher {
-    column-span: 3;
-    row-span: 2;
-    width: 100%;
-    height: 100%;
+Rule {
+    width: 0.2;
 }
 
 #display {
@@ -17,6 +15,7 @@ ContentSwitcher {
     padding: 2 8;
     content-align: center middle;
     text-align: center;
+    overflow-y: hidden;
 }
 
 #city-input {
@@ -29,21 +28,30 @@ ContentSwitcher {
     height: auto;
     width: 100%;
     dock: top;
-    margin-top: 1;
+    margin-top: 0;
 }
 
 #location-card {
-    width: 1fr;
-    height: auto;
     border: round $secondary;
-    margin: 0 0;
-    content-align: center middle;
-    align-vertical: top;
-    /*align: center top;*/
+}
+
+#clock {
+    border: round $secondary;
+    text-align: center;
+}
+
+.stack {
+    overflow-y: auto;
+    scrollbar-size: 0 0;
+    scrollbar-visibility: hidden;
 }
 
 .details {
-    
+    width: 1fr;
+    height: auto;
+    margin: 0 0;
+    content-align: center middle;
+    align-vertical: top;
 }
 
 .metric {

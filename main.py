@@ -4,16 +4,16 @@ import time
 
 from textual import events, on
 from textual.app import App, ComposeResult
-from textual.widgets import Static, Header, Input, Digits
+from textual.widgets import Static, Header, Input, Digits, Rule
 from textual.containers import Vertical, Horizontal, Center
 
 class WeatherCard(Static):
     def rendermetric(self, label:str, value:str, icon:str):
-        self.update(f"{icon} | [$accent][blink]{label}[/][/] - [b]{value}[/b]")
+        self.update(f"{icon} | [$accent blink]{label}[/] - [b]{value}[/b]")
 
 class LocationCard(Static):
     def rendercard(self, city:str, country:str, coords: tuple):
-        self.update(f"[b $primary]{city}[/]\n{country} | {coords}")
+        self.update(f"[b $primary]{city}[/]\n{country}\n{coords}")
 
 class ClassDict(TypedDict):
     location: LocationCard
@@ -34,9 +34,14 @@ class WeatherCLI(App):
                 yield Static("Enter a city", id="display", classes="start")
 
         with Horizontal(id="metric-container",classes="hide"):
-            yield LocationCard(id="location-card")
-            yield Digits("", id="local-clock")
-            yield WeatherCard(id="temp",classes="metric")
+            with Vertical(id="details-stack", classes="stack"):
+                yield Digits("0:00",id="clock", classes="details")
+                yield LocationCard(id="location-card", classes="details")
+                for x in range(15):
+                    yield Digits("0:00", classes="details")
+            yield Rule("vertical","solid")
+            with Vertical(id="weather-stack", classes="stack"):
+                yield WeatherCard(id="temp",classes="metric")
 
         #with Horizontal(classes="hide"):
             #yield Static("Hi")

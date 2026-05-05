@@ -19,7 +19,9 @@ dependencies = [
     "requests==2.33.1",
     "rich==15.0.0",
     "textual==8.2.4",
+    "timezonefinder>=8.2.0",
     "typing-extensions==4.15.0",
+    "tzdata>=2026.2",
     "uc-micro-py==2.0.0",
     "urllib3==2.6.3",
 ]

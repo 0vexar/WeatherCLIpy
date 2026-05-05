@@ -51,10 +51,10 @@ def get_location_details(coordinates: tuple):
         "country": iso3166.countries.get(response[0]["country"]).name,
     }
 
-    if response[0]["state"]:
+    if "state" in response[0]:
         return_list["state"] = response[0]["state"]
 
-    if response[0]["local_names"]:
+    if "local_names" in response[0]["local_names"]:
         return_list["city"] = response[0]["local_names"]["en"]
     else:
         return_list["city"] = response[0]["name"]
