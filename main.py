@@ -1,4 +1,5 @@
 from src.api import *
+from src.clock import *
 from typing import TypedDict
 import time
 
@@ -19,10 +20,28 @@ class ClassDict(TypedDict):
     location: LocationCard
     temp: WeatherCard
 
+class LocalClock(Digits):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.__zone__ = None
+
+    #def on_mount(self):
+
+
+    def setzone(self, coordinates:tuple):
+        self.__zone__ = get_timezone(coordinates)
+
+    #def start(self):
+
+
 class WeatherCLI(App):
 
     CSS_PATH = "src/style.tcss"
     BINDINGS = [("q", "quit", "Quit")]
+
+    __coords__ = None
     
     def compose(self) -> ComposeResult:
         
@@ -34,19 +53,31 @@ class WeatherCLI(App):
                 yield Static("Enter a city", id="display", classes="start")
 
         with Horizontal(id="metric-container",classes="hide"):
+
+            # Location Details
             with Vertical(id="details-stack", classes="stack"):
-                yield Digits("0:00",id="clock", classes="details")
+                yield LocalClock(id="clock", classes="details")
                 yield LocationCard(id="location-card", classes="details")
-                for x in range(15):
-                    yield Digits("0:00", classes="details")
+
             yield Rule("vertical","solid")
+
+            # Current Weather
             with Vertical(id="weather-stack", classes="stack"):
                 yield WeatherCard(id="temp",classes="metric")
 
-        #with Horizontal(classes="hide"):
-            #yield Static("Hi")
-
         yield Input(placeholder="City...",id="city-input")
+
+    def on_mount(self) -> None:
+        self.set_interval(1,self.update_clock,pause=True)
+
+    def update_clock(self) -> None:
+        local_clock = self.query_one("#clock",LocalClock)
+
+        if isinstance(self.__coords__, tuple):
+            tz_str = get_timezone(self.__coords_)
+
+            if tz_str:
+                local_clock.setzone(tz_str)
 
     @on(Input.Submitted, "#city-input")
     def search(self, event: Input.Submitted) -> None:
@@ -71,7 +102,7 @@ class WeatherCLI(App):
                 "temp": self.query_one("#temp",WeatherCard)
             }
 
-            coordinates = coords(city)
+            coordinates, self.__coords__ = coords(city)
 
             location_info = get_location_details(coordinates)
 
