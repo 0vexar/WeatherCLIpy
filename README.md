@@ -7,6 +7,9 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 [![uv](https://img.shields.io/badge/managed%20by-uv-261230?style=flat&logo=uv&logoColor=black)](https://docs.astral.sh/uv/)
 
+<img width="1862" height="992" alt="image" src="https://github.com/user-attachments/assets/90e7fffa-d16f-41ad-ac9c-65b1963612ce" />
+<img width="1866" height="1002" alt="image" src="https://github.com/user-attachments/assets/35c13a98-6d38-4554-85df-b5366ad938d3" />
+
 ---
 
 ## 📌 Overview
