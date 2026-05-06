@@ -5,7 +5,8 @@ Screen {
 }
 
 Rule {
-    width: 0.2;
+    width: 2;
+    color: $panel;
 }
 
 #display {
@@ -18,7 +19,7 @@ Rule {
     overflow-y: hidden;
 }
 
-#city-input {
+#location-input {
     height: auto;
     width: 100%;
     dock: bottom;
@@ -28,16 +29,25 @@ Rule {
     height: auto;
     width: 100%;
     dock: top;
-    margin-top: 0;
+    margin-top: 1;
 }
 
 #location-card {
     border: round $secondary;
+    text-align: center;
 }
 
-#clock {
+#local-clock {
     border: round $secondary;
     text-align: center;
+}
+
+#license {
+    text-align: center;
+    overflow-x: auto;
+    height: auto;
+    width: 1fr;
+    margin: 0 1;
 }
 
 .stack {
@@ -46,12 +56,16 @@ Rule {
     scrollbar-visibility: hidden;
 }
 
+.card {
+    content-align: center middle;
+    align-horizontal: center;
+    align-vertical: top;
+}
+
 .details {
     width: 1fr;
     height: auto;
     margin: 0 0;
-    content-align: center middle;
-    align-vertical: top;
 }
 
 .metric {
@@ -59,9 +73,6 @@ Rule {
     height: auto;
     border: round $primary;
     margin: 0 1;
-    content-align: center middle;
-    align-vertical: top;
-    /*align: center top;*/
 }
 
 .hide {
