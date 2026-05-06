@@ -1,25 +1,32 @@
 import requests as r
-import os, iso3166
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
 token = os.getenv("APPID")
 
 endpoints = {
-    "search": "http://api.openweathermap.org/geo/1.0/direct",
+    "search": "https://nominatim.openstreetmap.org/search",
     "current": "https://api.openweathermap.org/data/2.5/weather",
     "r-geocoding": "http://api.openweathermap.org/geo/1.0/reverse"
 }
 
-def coords(location: str):
-    params = {
-        "q": location,
-        "appid": token
+def search(location: str) -> dict:
+
+    headers = {
+        'User-Agent': 'WeatherCLI/1.0 (https://github.com/0vexar/WeatherCLIpy; 29huttners@gmail.com)'
     }
 
-    response = r.get(endpoints["search"],params).json()[0]
+    params = {
+        "q": location,
+        "format": "json",
+        "limit": 1,
+        "accept-language": "en",
+        "extra-tags": 1,
+        "addressdetails": 1,
+    }
 
-    return (response["lat"], response["lon"])
+    return r.get(endpoints["search"],params,headers=headers).json()[0]
 
 def weather(coordinates:tuple):
     params = {
@@ -36,27 +43,3 @@ def weather(coordinates:tuple):
     }
 
     return weather_list
-
-def get_location_details(coordinates: tuple):
-    params = {
-        "lat": coordinates[0],
-        "lon": coordinates[1],
-        "appid": token
-    }
-
-    response = r.get(endpoints["r-geocoding"],params).json()
-
-    return_list = {
-        "city": response[0]["local_names"]["en"],
-        "country": iso3166.countries.get(response[0]["country"]).name,
-    }
-
-    if "state" in response[0]:
-        return_list["state"] = response[0]["state"]
-
-    if "local_names" in response[0]["local_names"]:
-        return_list["city"] = response[0]["local_names"]["en"]
-    else:
-        return_list["city"] = response[0]["name"]
-
-    return return_list
