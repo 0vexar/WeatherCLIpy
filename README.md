@@ -1,6 +1,6 @@
 # 🔐 Weather CLI
 
-> Weather app made in Python
+> A terminal-native weather app made in Python
 
 ![Status](https://img.shields.io/badge/status-In%20Development%20\(WIP\)-orange)
 ![Language](https://img.shields.io/badge/language-Python-blue)
@@ -13,7 +13,7 @@
 ---
 
 ## 📌 Overview
-A command line weather app made with the Python Requests library and the [OpenWeatherMap API](https://openweathermap.org)
+A command line weather app made with the Python Requests library and the [OpenWeatherMap API](https://openweathermap.org) featuring geolocation, local timezone support, and future forecast integration
 
 ### ⭐ Credits
 - This application uses [Nominatim)](https://nominatim.org/) for geocoding. 
