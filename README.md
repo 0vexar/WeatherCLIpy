@@ -51,6 +51,9 @@ under the ODbL license.
 
 [**Get OpenWeather API key**](https://home.openweathermap.org/api_keys)
 
+Make a `.env` file in the main folder
+>Set `APPID` to your OpenWeatherMap API key in the .env file (`APPID=...`)
+
 ---
 
 ### With [uv](https://docs.astral.sh/uv/)
@@ -63,8 +66,6 @@ under the ODbL license.
 
 ### With pip
 
-1. Make a `.env` file in the main folder
->Set `APPID` to your OpenWeatherMap API key in the .env file (`APPID=...`)
 1. Run `python -m venv .venv` to set up venv
 2. Activate venv (`.\.venv\Scripts\Activate.ps1` for Powershell)
 3. Run `pip install -r requirements.txt` or `uv add -`
