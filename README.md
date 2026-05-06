@@ -20,11 +20,12 @@ A command line weather app made with the Python Requests library and the [OpenWe
 - [ ] ☁️ 5-Day Forecast
 - [ ] 🟰 Backend Logic
   - [ ] Fuzzy Search
+  - [ ] Clock Backend
   - [ ] Search Error Handling
 - [ ] 💻 Textual TUI
   - [ ] Current Conditions Display
-  - [ ] Forecast Display
-  - [ ] City Details
+  - [ ] Forecast display
+  - [ ] City details
 
 ---
 
