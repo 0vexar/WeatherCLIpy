@@ -12,6 +12,11 @@
 ## 📌 Overview
 A command line weather app made with the Python Requests library and the [OpenWeatherMap API](https://openweathermap.org)
 
+### ⭐ Credits
+- This application uses [Nominatim)](https://nominatim.org/) for geocoding. 
+Data is provided by [**OpenStreetMap**](https://www.openstreetmap.org/copyright) 
+under the ODbL license.
+
 ---
 
 ## 🚀 Features
@@ -19,20 +24,23 @@ A command line weather app made with the Python Requests library and the [OpenWe
 - [ ] 🔢 Current Weather
 - [ ] ☁️ 5-Day Forecast
 - [ ] 🟰 Backend Logic
-  - [ ] Fuzzy Search
-  - [ ] Clock Backend
-  - [ ] Search Error Handling
+  - [X] Fuzzy search (API built in)
+  - [X] Clock backend
 - [ ] 💻 Textual TUI
-  - [ ] Current Conditions Display
+  - [ ] Current conditions display
   - [ ] Forecast display
-  - [ ] City details
+  - [ ] Location details
+    - [X] Name, country, state, etc
+    - [ ] Population details
+    - [ ] Government details
+  - [X] Local clock
 
 ---
 
 ## 🧰 Tech Stack
 - Language: `Python`
 - Tools: `Git`, `uv`
-- Libraries: `Requests`, `Textual`, `iso3166`, `typing`
+- Libraries: `Requests`, `Textual`
 
 ---
 
