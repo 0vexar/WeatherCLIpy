@@ -19,10 +19,10 @@ def search(location: str) -> dict:
 
     params = {
         "q": location,
-        "format": "json",
+        "format": "jsonv2",
         "limit": 1,
         "accept-language": "en",
-        "extra-tags": 1,
+        "extratags": 1,
         "addressdetails": 1,
     }
 
