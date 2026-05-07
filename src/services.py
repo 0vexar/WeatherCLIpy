@@ -20,7 +20,10 @@ def build_dashboard(city: str) -> DashboardData:
         state=address.get("state") or address.get("province") or address.get("region") or "N/A",
         lat=lat,
         lon=lon,
-        timezone=timezone
+        timezone=timezone,
+        tags=search_results.get("extratags", {}), # type: ignore
+        type_normal=search_results["type"],
+        type_extra=search_results["extratags"].get("linked_place", None)
     )
 
     return DashboardData(
@@ -29,3 +32,23 @@ def build_dashboard(city: str) -> DashboardData:
         local_time=local_time,
         license=search_results.get('licence') # type: ignore
     )
+
+def GetRelevantTags(tags: dict, type_normal: str, type_extra: str):
+
+    use_extra = type_normal in {"administrative","boundary","yes","political"}
+
+    location_type = (type_extra if use_extra else type_normal).lower()
+
+    schema = {
+        "country": ["capital", "currency"],
+        "state": ["state_code"],
+        "city": [],
+        "all": ["population","website","wikipedia"]
+    }
+
+    target_keys = schema.get(location_type, [])
+
+    keys_specific = {k: tags.get(k) for k in target_keys if tags.get(k)}
+    keys_general = {k: tags.get(k) for k in schema["all"] if tags.get(k)}
+
+    return keys_specific | keys_general

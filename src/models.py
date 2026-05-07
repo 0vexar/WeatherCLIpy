@@ -9,6 +9,11 @@ class LocationData:
     lat: float
     lon: float
 
+    type_normal: str
+    type_extra: str
+
+    tags: dict
+
     # Time
     timezone: str | None
 

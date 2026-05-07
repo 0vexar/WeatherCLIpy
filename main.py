@@ -1,9 +1,16 @@
+# Internal Libraries
+
 from src.api import *
 from src.clock import *
-from src.services import build_dashboard
+from src.services import build_dashboard, GetRelevantTags
+
+# Utilies
 
 from typing import TypedDict
+import humanize as humanize
 import time
+
+# UI
 
 from textual import events, on
 from textual.app import App, ComposeResult
@@ -38,6 +45,10 @@ class LocationCard(Static):
     def rendercard(self, city:str, country:str, lat: float, lon: float):
         self.update(f"[b $primary]{city}[/]\n{country}\n[b $accent]{lat}[/] | [b $accent]{lon}[/]")
 
+class Card(Static):
+    def rendercard(self, label:str, value:str):
+        self.update(f"[$primary]{label}[/]: {value}")
+
 class ClassDict(TypedDict):
     location: LocationCard
     temp: WeatherCard
@@ -65,6 +76,8 @@ class WeatherCLI(App):
 
                 yield LocalClock(id="local-clock", classes="details card")
                 yield LocationCard(id="location-card", classes="details card")
+
+                yield Rule("horizontal","heavy")
 
             yield Rule("vertical","dashed", classes="hide")
 
@@ -112,8 +125,14 @@ class WeatherCLI(App):
 
             clock = self.query_one("#local-clock",LocalClock)
             static_license = self.query_one("#license",Static)
+            tag_widgets = self.query(".tag")
 
             clock.set_location((dashboard.location.lat, dashboard.location.lon))
+
+            # Render Location Details
+
+            for w in tag_widgets:
+                w.remove()
 
             Cards["location"].rendercard(
                 dashboard.location.city,
@@ -121,11 +140,29 @@ class WeatherCLI(App):
                 dashboard.location.lat,
                 dashboard.location.lon,
             )
+
+            # Render Metrics
+
             Cards["temp"].rendermetric("Temperature",f"{dashboard.weather.temp_f}°F","🔥")
+
+            # License
 
             static_license.update(f"[i]{dashboard.license}[/]")
 
+            # Mount Extra Tags
 
+            relevant_tags = GetRelevantTags(dashboard.location.tags,dashboard.location.type_normal,dashboard.location.type_extra)
+
+            stack: Vertical = self.query_one("#details-stack",Vertical)
+
+            for t in relevant_tags:
+
+                value = relevant_tags[t]
+
+                if value.isdigit() and (int(value) >= 1000): # type: ignore
+                    value = humanize.intword(value)
+                
+                stack.mount(Card(f"{t}: [b $accent]{value}[/]",classes="tag"))
 
 
         event.input.clear()
