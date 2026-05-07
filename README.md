@@ -34,8 +34,9 @@ under the ODbL license.
   - [ ] Forecast display
   - [ ] Location details
     - [X] Name, country, state, etc
-    - [ ] Population details
-    - [ ] Government details
+    - [X] Population details
+    - [X] Government details
+    - [ ] Location description
   - [X] Local clock
 
 ---
