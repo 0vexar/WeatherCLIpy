@@ -4,9 +4,19 @@ Screen {
     overflow-y: hidden;
 }
 
-Rule {
-    width: 2;
+Rule.-horizontal {
+    width: 100%;
+    margin: 1 0;
     color: $panel;
+    align-horizontal: center;
+}
+
+Rule.-vertical {
+    width: 1;
+    height: 100%;
+    margin: 0 2;
+    color: $panel;
+    align-horizontal: center;
 }
 
 #display {
@@ -26,7 +36,7 @@ Rule {
 }
 
 #metric-container {
-    height: auto;
+    height: 100%;
     width: 100%;
     dock: top;
     margin-top: 1;
@@ -47,7 +57,7 @@ Rule {
     overflow-x: auto;
     height: auto;
     width: 1fr;
-    margin: 0 1;
+    margin: 1 0;
 }
 
 .stack {
@@ -62,6 +72,17 @@ Rule {
     align-vertical: top;
 }
 
+.tag {
+    border: round $secondary;
+    text-align: left;
+    content-align: center middle;
+    align-horizontal: center;
+    align-vertical: top;
+    width: 1fr;
+    height: auto;
+    margin-top: 0;
+}
+
 .details {
     width: 1fr;
     height: auto;
@@ -72,7 +93,9 @@ Rule {
     width: 1fr;
     height: auto;
     border: round $primary;
-    margin: 0 1;
+    content-align: center middle;
+    align-horizontal: center;
+    margin: 1 0;
 }
 
 .hide {
