@@ -18,4 +18,4 @@ def get_time(tz_str):
     
     __local_time__ = datetime.now(ZoneInfo(tz_str))
     
-    return __local_time__.strftime("%I:%M:%S%p")
+    return __local_time__.strftime("%I:%M:%S%p").lower()
