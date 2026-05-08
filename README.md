@@ -1,16 +1,19 @@
 # 🔐 Weather CLI
 
-> Weather app made in Python
+> A terminal-native weather app made in Python
 
 ![Status](https://img.shields.io/badge/status-In%20Development%20\(WIP\)-orange)
 ![Language](https://img.shields.io/badge/language-Python-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 [![uv](https://img.shields.io/badge/managed%20by-uv-261230?style=flat&logo=uv&logoColor=black)](https://docs.astral.sh/uv/)
 
+<img width="1862" height="992" alt="image" src="https://github.com/user-attachments/assets/90e7fffa-d16f-41ad-ac9c-65b1963612ce" />
+<img width="1866" height="1002" alt="image" src="https://github.com/user-attachments/assets/35c13a98-6d38-4554-85df-b5366ad938d3" />
+
 ---
 
 ## 📌 Overview
-A command line weather app made with the Python Requests library and the [OpenWeatherMap API](https://openweathermap.org)
+A command line weather app made with the Python Requests library and the [OpenWeatherMap API](https://openweathermap.org) featuring geolocation, local timezone support, and future forecast integration
 
 ### ⭐ Credits
 - This application uses [Nominatim)](https://nominatim.org/) for geocoding. 
@@ -31,8 +34,9 @@ under the ODbL license.
   - [ ] Forecast display
   - [ ] Location details
     - [X] Name, country, state, etc
-    - [ ] Population details
-    - [ ] Government details
+    - [X] Population details
+    - [X] Government details
+    - [ ] Location description
   - [X] Local clock
 
 ---
@@ -48,6 +52,9 @@ under the ODbL license.
 
 [**Get OpenWeather API key**](https://home.openweathermap.org/api_keys)
 
+Make a `.env` file in the main folder
+>Set `APPID` to your OpenWeatherMap API key in the .env file (`APPID=...`)
+
 ---
 
 ### With [uv](https://docs.astral.sh/uv/)
@@ -60,8 +67,6 @@ under the ODbL license.
 
 ### With pip
 
-1. Make a `.env` file in the main folder
->Set `APPID` to your OpenWeatherMap API key in the .env file (`APPID=...`)
 1. Run `python -m venv .venv` to set up venv
 2. Activate venv (`.\.venv\Scripts\Activate.ps1` for Powershell)
 3. Run `pip install -r requirements.txt` or `uv add -`
